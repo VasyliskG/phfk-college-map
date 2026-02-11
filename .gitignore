@@ -1,0 +1,36 @@
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.iml
+*.iws
+*.ipr
+
+# Build artifacts
+target/
+build/
+dist/
+*.class
+*.jar
+*.war
+*.ear
+
+# Dependencies
+node_modules/
+vendor/
+.gradle/
+
+# Node.js
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
