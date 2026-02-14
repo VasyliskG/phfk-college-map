@@ -1,13 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PHFK College Map</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Віртуальна карта коледжу</title>
+  <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-<div id="app"></div>
-<script src="js/main.js"></script>
+
+  <!-- Шапка -->
+  <header>
+    <div class="container header-inner">
+      <h1 class="logo">Віртуальна карта коледжу</h1>
+      <nav>
+        <a href="#">Головна</a>
+        <a href="#">Карта</a>
+        <a href="#">Як користуватись</a>
+        <a href="#">Про коледж</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Основний контент -->
+  <main class="container main-grid">
+
+    <!-- Ліва колонка -->
+    <div class="left-column">
+      <div class="photo-wrapper">
+        <img src="/frontend/images/Subtract.png" 
+             alt="Будівля Природничо-гуманітарного фахового коледжу" 
+             class="main-photo"/>
+
+        <div class="bubble bubble-1">Зручна навігація</div>
+        <div class="bubble bubble-2">Швидкий пошук</div>
+
+        <div class="info-label">Актуальна інформація</div>
+      </div>
+
+      <div class="actual-info-block">
+        
+      </div>
+    </div>
+
+    <!-- Права колонка -->
+    <div class="right-column">
+      <div class="hero-text">
+        <span class="pretitle">ВІРТУАЛЬНА КАРТА</span>
+        <h1>Природничо-гуманітарного<br>фахового коледжу</h1>
+        <p class="subtitle">Навігація аудиторіями та сервісами</p>
+
+        <a href="map.html" class="btn-big">ПЕРЕЙТИ ДО КАРТИ</a>
+      </div>
+
+      <!-- Контакти під кнопкою -->
+      <div class="contacts-card">
+        <h3>Наші контакти</h3>
+        <p>(0322) 61-33-45</p>
+        <p>Закарпатська обл., м. Ужгород</p>
+        <p>вул. Українська, 89</p>
+        <p><a href="mailto:collegezhnu@ukr.net">collegezhnu@ukr.net</a></p>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
