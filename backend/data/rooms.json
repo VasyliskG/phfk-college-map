@@ -1,0 +1,125 @@
+{
+  "rooms": [
+    {
+      "roomId": "1",
+      "label": "Головний вхід",
+      "aliases": ["вхід", "головний вхід"],
+      "floor": 1,
+      "nodeId": "node_1",
+      "type": "entrance",
+      "description": "Головний вхід до коледжу."
+    },
+    {
+      "roomId": "300",
+      "label": "Аудиторія 300",
+      "aliases": ["300", "ауд 300"],
+      "floor": 1,
+      "nodeId": "node_300",
+      "type": "classroom"
+    },
+    {
+        "roomId": "301",
+        "label": "Аудиторія 301",
+        "aliases": ["301", "ауд 301"],
+        "floor": 1,
+        "nodeId": "node_301",
+        "type": "classroom"
+      },
+      {
+        "roomId": "302",
+        "label": "Аудиторія 302",
+        "aliases": ["302", "ауд 302"],
+        "floor": 1,
+        "nodeId": "node_302",
+        "type": "classroom"
+      },
+      {
+        "roomId": "303",
+        "label": "Аудиторія 303",
+        "aliases": ["303", "ауд 303"],
+        "floor": 1,
+        "nodeId": "node_303",
+        "type": "classroom"
+      },
+      {
+        "roomId": "304",
+        "label": "Аудиторія 304",
+        "aliases": ["304", "ауд 304"],
+        "floor": 1,
+        "nodeId": "node_304",
+        "type": "classroom"
+      },
+      {
+        "roomId": "305",
+        "label": "Аудиторія 305",
+        "aliases": ["305", "ауд 305"],
+        "floor": 1,
+        "nodeId": "node_305",
+        "type": "classroom"
+      },
+      {
+        "roomId": "307",
+        "label": "Аудиторія 307",
+        "aliases": ["307", "ауд 307"],
+        "floor": 1,
+        "nodeId": "node_307",
+        "type": "classroom"
+      },
+      {
+        "roomId": "308",
+        "label": "Аудиторія 308",
+        "aliases": ["308", "ауд 308"],
+        "floor": 1,
+        "nodeId": "node_308",
+        "type": "classroom"
+      },
+      {
+        "roomId": "309",
+        "label": "Аудиторія 309",
+        "aliases": ["309", "ауд 309"],
+        "floor": 1,
+        "nodeId": "node_309",
+        "type": "classroom"
+      },
+      {
+        "roomId": "310",
+        "label": "Аудиторія 310",
+        "aliases": ["310", "ауд 310"],
+        "floor": 1,
+        "nodeId": "node_310",
+        "type": "classroom"
+      },
+    {
+      "roomId": "stairs_11",
+      "label": "Сходи 1 (1-2 поверх)",
+      "aliases": ["сходи"],
+      "floor": 1,
+      "nodeId": "node_stairs_11",
+      "type": "stairs"
+    },
+    {
+      "roomId": "stairs_12",
+      "label": "Сходи 2 (1-2 поверх)",
+      "aliases": ["сходи"],
+      "floor": 1,
+      "nodeId": "node_stairs_12",
+      "type": "stairs"
+    },
+    {
+      "roomId": "wc_11",
+      "label": "Туалет Чоловічий",
+      "aliases": ["туалет", "туалет чоловічий"],
+      "floor": 1,
+      "nodeId": "node_wc_11",
+      "type": "wc"
+    },
+    {
+      "roomId": "wc_12",
+      "label": "Туалет Жіночий",
+      "aliases": ["туалет", "туалет жіночий"],
+      "floor": 1,
+      "nodeId": "node_wc_12",
+      "type": "wc"
+    }
+  ]
+}

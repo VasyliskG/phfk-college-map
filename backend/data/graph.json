@@ -1,0 +1,51 @@
+{
+  "nodes": [
+    { "id": "node_301", "floor": 1, "x": 120, "y": 110, "name": "Аудиторія 301" },
+    { "id": "node_303", "floor": 1, "x": 350, "y": 110, "name": "Аудиторія 303" },
+    { "id": "node_stairs_12", "floor": 1, "x": 520, "y": 110, "name": "Сходи 2" },
+    { "id": "node_305", "floor": 1, "x": 650, "y": 110, "name": "Аудиторія 305" },
+    { "id": "node_307", "floor": 1, "x": 950, "y": 110, "name": "Аудиторія 307" },
+    { "id": "node_309", "floor": 1, "x": 1350, "y": 110, "name": "Аудиторія 309" },
+    { "id": "node_wc_11", "floor": 1, "x": 1550, "y": 110, "name": "WC Чоловічий" },
+    { "id": "node_wc_12", "floor": 1, "x": 1700, "y": 110, "name": "WC Жіночий" },
+
+    { "id": "node_300", "floor": 1, "x": 120, "y": 380, "name": "Аудиторія 300" },
+    { "id": "node_302", "floor": 1, "x": 350, "y": 380, "name": "Аудиторія 302" },
+    { "id": "node_304", "floor": 1, "x": 650, "y": 380, "name": "Аудиторія 304" },
+    { "id": "node_1",   "floor": 1, "x": 950, "y": 460, "name": "Головний вхід" },
+    { "id": "node_308", "floor": 1, "x": 1250, "y": 360, "name": "Аудиторія 308" },
+    { "id": "node_310", "floor": 1, "x": 1550, "y": 360, "name": "Аудиторія 310" },
+
+    { "id": "node_stairs_11", "floor": 1, "x": 1400, "y": 110, "name": "Сходи 1" },
+
+    { "id": "node_corridor_left",   "floor": 1, "x": 300,  "y": 250, "name": "Коридор" },
+    { "id": "node_corridor_center", "floor": 1, "x": 950,  "y": 250, "name": "Коридор" },
+    { "id": "node_corridor_right",  "floor": 1, "x": 1500, "y": 250, "name": "Коридор" }
+  ],
+
+  "edges": [
+    { "from": "node_corridor_left", "to": "node_corridor_center", "weight": 50, "floor": 1 },
+    { "from": "node_corridor_center", "to": "node_corridor_right", "weight": 50, "floor": 1 },
+
+    { "from": "node_300", "to": "node_corridor_left", "weight": 10, "floor": 1 },
+    { "from": "node_302", "to": "node_corridor_left", "weight": 10, "floor": 1 },
+    { "from": "node_304", "to": "node_corridor_center", "weight": 10, "floor": 1 },
+    { "from": "node_308", "to": "node_corridor_center", "weight": 10, "floor": 1 },
+    { "from": "node_310", "to": "node_corridor_right", "weight": 10, "floor": 1 },
+
+    { "from": "node_301", "to": "node_corridor_left", "weight": 10, "floor": 1 },
+    { "from": "node_303", "to": "node_corridor_left", "weight": 10, "floor": 1 },
+    { "from": "node_305", "to": "node_corridor_center", "weight": 10, "floor": 1 },
+    { "from": "node_307", "to": "node_corridor_center", "weight": 10, "floor": 1 },
+    { "from": "node_309", "to": "node_corridor_right", "weight": 10, "floor": 1 },
+
+    { "from": "node_wc_11", "to": "node_corridor_right", "weight": 10, "floor": 1 },
+    { "from": "node_wc_12", "to": "node_corridor_right", "weight": 10, "floor": 1 },
+
+    { "from": "node_stairs_11", "to": "node_corridor_right", "weight": 15, "floor": 1 },
+    { "from": "node_stairs_12", "to": "node_corridor_left", "weight": 15, "floor": 1 },
+
+    { "from": "node_1", "to": "node_corridor_center", "weight": 20, "floor": 1 }
+  ]
+}
+
