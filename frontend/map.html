@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Карта - Віртуальна карта коледжу</title>
+  <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="stylesheet" href="styles/map.css"/>
+  
+</head>
+<body>
+
+  <header>
+    <div class="container header-inner">
+      <h1 class="logo">Віртуальна карта коледжу</h1>
+      <nav>
+        <a href="index.html">Головна</a>
+        <a href="map.html">Карта</a>
+        <a href="how-to-use.html">Як користуватись</a>
+        <a href="about.html">Про коледж</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="map-page container">
+
+    <div class="map-container" id="mapContainer">
+      <!-- Тут буде відображатися SVG карта поверху -->
+      <div class="map-placeholder" id="placeholder">
+        КАРТА
+      </div>
+      <svg id="floorMap" class="map-svg" width="100%" height="100%"></svg>
+    </div>
+
+    <div class="search-panel">
+
+      <div class="search-box">
+        <div class="search-input-wrapper">
+          <input type="text" id="searchInput" 
+                 class="search-input" 
+                 placeholder="введи номер аудиторії або корпус"/>
+          <button id="searchBtn" class="search-btn">Пошук</button>
+        </div>
+      </div>
+
+      <div class="popular">
+        <div class="popular-title">Найпопулярніші:</div>
+        <div class="popular-buttons">
+          <button class="popular-btn" data-room="101">Ауд. 101</button>
+          <button class="popular-btn" data-room="201">Ауд. 201</button>
+          <button class="popular-btn" data-room="library">Бібліотека</button>
+          <button class="popular-btn" data-room="director">Кабінет директора</button>
+          <button class="popular-btn" data-room="pb">Підвал ПБ</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      const query = document.getElementById('searchInput').value.trim();
+      if (query) {
+        alert(`Шукаємо: ${query}\n\n(Тут пізніше буде запит на бекенд + відмальовка маршруту)`);
+        // Тут потім буде виклик функції drawRoute(query);
+      }
+    });
+
+    // Клік по популярних кнопках
+    document.querySelectorAll('.popular-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const room = btn.dataset.room;
+        document.getElementById('searchInput').value = room;
+        document.getElementById('searchBtn').click();
+      });
+    });
+  </script>
+</body>
+</html>
