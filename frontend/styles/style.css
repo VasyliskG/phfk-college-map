@@ -5,353 +5,226 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  background: #f5f5f5;
-}
-
-#app {
-  display: flex;
-  height: 100vh;
-}
-
-/* ============================================ */
-/* Панель управління (ліва сторона) */
-/* ============================================ */
-.control-panel {
-  width: 350px;
-  background: white;
-  padding: 20px;
-  overflow-y: auto;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  z-index: 1000;
-}
-
-.control-panel h1 {
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-/* Пошук */
-.search-section {
-  margin-bottom: 20px;
-  position: relative;
-}
-
-#search-input {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: border-color 0.3s;
-}
-
-#search-input:focus {
-  outline: none;
-  border-color: #4CAF50;
-}
-
-.search-results {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-top: 5px;
-  max-height: 300px;
-  overflow-y: auto;
-  display: none;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  z-index: 100;
-}
-
-.search-results.show {
-  display: block;
-}
-
-.search-result-item {
-  padding: 12px;
-  cursor: pointer;
-  border-bottom: 1px solid #f0f0f0;
-  transition: background 0.2s;
-}
-
-.search-result-item:hover {
-  background: #f5f5f5;
-}
-
-.search-result-item:last-child {
-  border-bottom: none;
-}
-
-.result-label {
-  font-weight: 600;
-  color: #333;
-}
-
-.result-meta {
-  font-size: 12px;
-  color: #666;
-  margin-top: 4px;
-}
-
-/* Перемикач поверхів */
-.floor-selector {
-  margin-bottom: 20px;
-}
-
-.floor-selector label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: 600;
-  color: #333;
-}
-
-.floor-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.floor-btn {
-  padding: 10px;
-  border: 2px solid #ddd;
-  background: white;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s;
-}
-
-.floor-btn:hover {
-  background: #f5f5f5;
-}
-
-.floor-btn.active {
-  background: #4CAF50;
-  color: white;
-  border-color: #4CAF50;
-}
-
-/* Панель маршруту */
-.route-panel {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.route-panel h3 {
-  font-size: 16px;
-  margin-bottom: 12px;
-  color: #333;
-}
-
-.route-inputs {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.route-inputs select {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 13px;
-}
-
-.route-inputs span {
-  color: #666;
-  font-size: 18px;
-}
-
-#build-route-btn,
-#clear-route-btn {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: background 0.3s;
-  margin-bottom: 8px;
-}
-
-#build-route-btn {
-  background: #2196F3;
-  color: white;
-}
-
-#build-route-btn:hover {
-  background: #1976D2;
-}
-
-#clear-route-btn {
-  background: #f44336;
-  color: white;
-}
-
-#clear-route-btn:hover {
-  background: #d32f2f;
-}
-
-#route-info {
-  margin-top: 12px;
-  padding: 10px;
-  background: white;
-  border-radius: 6px;
-  font-size: 13px;
-  display: none;
-}
-
-#route-info.show {
-  display: block;
-}
-
-.route-step {
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.route-step:last-child {
-  border-bottom: none;
-}
-
-/* Інфо про кімнату */
-.room-info {
-  background: #e3f2fd;
-  padding: 15px;
-  border-radius: 8px;
-  border-left: 4px solid #2196F3;
-}
-
-.room-info h3 {
-  font-size: 16px;
-  margin-bottom: 8px;
-  color: #1976D2;
-}
-
-.room-info p {
-  font-size: 13px;
-  color: #555;
-  margin-bottom: 4px;
-}
-
-/* ============================================ */
-/* Карта Leaflet (права сторона) */
-/* ============================================ */
-#map {
-  flex: 1;
-  height: 100vh;
-  position: relative;
-}
-
-/* Кастомні маркери */
-.room-marker {
-  background: #4CAF50;
-  border: 2px solid white;
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.room-marker.selected {
-  background: #FF5722;
-  width: 16px;
-  height: 16px;
-}
-
-.stairs-marker {
-  background: #FF9800;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  #app {
-    flex-direction: column;
-  }
-
-  .control-panel {
-    width: 100%;
-    height: auto;
-    max-height: 40vh;
-  }
-
-  #map {
-    height: 60vh;
-  }
-}
-
-/* Додайте до існуючого файлу */
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.7;
-  }
-}
-
-/* Маркери різних типів */
-.node-marker {
-  transition: transform 0.2s;
-}
-
-.node-marker:hover {
-  transform: scale(1.2) !important;
-  z-index: 1000 !important;
-}
-
-.node-entrance {
-  animation: pulse 2s infinite;
-}
-
-.node-stairs {
-  filter: drop-shadow(0 0 4px rgba(244, 67, 54, 0.6));
-}
-
-.node-room {
-  filter: drop-shadow(0 0 3px rgba(33, 150, 243, 0.5));
-}
-
-/* Попередження про багатоповерховий маршрут */
-.multi-floor-warning {
-  background: #FFF3CD;
-  border-left: 4px solid #FF9800;
-  padding: 12px;
-  border-radius: 4px;
-  margin-top: 12px;
-  font-size: 13px;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #ffffff;
+  color: #111;
   line-height: 1.5;
 }
 
-.multi-floor-warning small {
-  color: #666;
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Шапка */
+header {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 0;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+nav a {
+  margin-left: 2.5rem;
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #1d4ed8;
+}
+
+/* Основна сітка */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  padding: 60px 0 80px;
+  align-items: start;
+}
+
+.left-column {
+  position: relative;
+}
+
+.photo-wrapper {
+  position: relative;
+}
+
+.main-photo {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
   display: block;
-  margin-top: 4px;
 }
 
-/* Покращені endpoints маршруту */
-.route-endpoint {
-  animation: bounce 1s ease-in-out infinite;
+.bubble {
+  position: absolute;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  white-space: nowrap;
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
+.bubble-1 { top: 12%; right: 6%; }
+.bubble-2 { top: 38%; right: 10%; }
+
+/* Лейбл поверх фото */
+.info-label {
+  position: absolute;
+  bottom: -22px;
+  left: 32px;
+  background: white;
+  color: #1d4ed8;
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding: 12px 32px 12px 24px;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.info-label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 0;
+  height: 0;
+  border-top: 48px solid white;
+  border-right: 20px solid transparent;
+  z-index: 1;
+}
+
+/* Блок актуальної інформації під фото */
+.actual-info-block {
+  margin-top: 50px;
+  padding: 20px 24px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.actual-info-block h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: #1e40af;
+}
+
+/* Права колонка */
+.hero-text {
+  padding-top: 20px;
+}
+
+.pretitle {
+  color: #1d4ed8;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  display: block;
+}
+
+h1 {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 12px 0 16px;
+}
+
+.subtitle {
+  font-size: 1.32rem;
+  color: #4b5563;
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+.btn-big {
+  display: inline-block;
+  background: #1d4ed8;
+  color: white;
+  font-weight: 600;
+  font-size: 1.18rem;
+  padding: 16px 48px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.btn-big:hover {
+  background: #1e40af;
+}
+
+/* Контакти під кнопкою */
+.contacts-card {
+  margin-top: 48px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 28px 36px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+.contacts-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 16px;
+  color: #1e40af;
+}
+
+.contacts-card p {
+  margin: 8px 0;
+  color: #334155;
+}
+
+.contacts-card a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.contacts-card a:hover {
+  text-decoration: underline;
+}
+
+/* Мобільна адаптація */
+@media (max-width: 980px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
-  50% {
-    transform: translateY(-5px);
+
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  .info-label {
+    font-size: 1.1rem;
+    padding: 10px 28px 10px 20px;
+    bottom: -18px;
+    left: 20px;
+  }
+
+  .info-label::before {
+    border-top: 42px solid white;
+    left: -16px;
+    border-right: 16px solid transparent;
+  }
+
+  .contacts-card {
+    margin-top: 32px;
   }
 }

@@ -67,6 +67,7 @@ class MapRenderer {
   }
 
   init() {
+    // Initialize the Leaflet map with bounds viscosity to prevent panning outside the floor image
     this.map = L.map(this.containerId, {
       crs: L.CRS.Simple,
       minZoom: -3,
@@ -74,7 +75,9 @@ class MapRenderer {
       zoomControl: true,
       attributionControl: false,
       zoomSnap: 0.25,
-      zoomDelta: 0.5
+      zoomDelta: 0.5,
+      // Prevent the user from panning the map too far from the image
+      maxBoundsViscosity: 1.0
     });
 
     const bounds = [
@@ -82,10 +85,16 @@ class MapRenderer {
       [this.imageHeight - this.imageOffsetY, this.imageWidth]
     ];
 
-    this.map.fitBounds(bounds);
+    // Fit the map to the floor image bounds and then restrict panning to those bounds
+    this.map.fitBounds(bounds, { padding: [20, 20] });
 
-    // Центруємо на вході
-    this.map.setView([this.imageHeight * 0.2 - this.imageOffsetY, this.imageWidth / 2], -1);
+    // Центруємо на вході (or center of image) with a comfortable zoom
+    const centerLat = (bounds[0][0] + bounds[1][0]) / 2;
+    const centerLng = (bounds[0][1] + bounds[1][1]) / 2;
+    this.map.setView([this.imageHeight * 0.2 - this.imageOffsetY || centerLat, this.imageWidth / 2 || centerLng], -1);
+
+    // Restrict map panning to the image area so the UI stays tidy
+    this.map.setMaxBounds(bounds);
 
     console.log('✅ Leaflet map initialized');
     console.log(`📐 Image: ${this.imageWidth}x${this.imageHeight}, Offset: ${this.imageOffsetY}px`);

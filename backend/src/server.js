@@ -214,6 +214,15 @@ function calculatePathDistance(graph, path) {
   return totalDistance;
 }
 
+// Додайте цей endpoint ДО app.listen()
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    message: 'Server is running',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);

@@ -2,7 +2,16 @@
  * API клієнт для взаємодії з backend
  */
 
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = (() => {
+  const hostname = window.location.hostname;
+
+  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    return 'http://localhost:3000/api';
+  }
+
+  // Production
+  return 'https://api.phfk-college-map.website/api';
+})();
 
 const API = {
   /**

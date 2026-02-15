@@ -27,10 +27,25 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 
-# Environment variables
-.env
-.env.local
-
 # OS files
 .DS_Store
 Thumbs.db
+
+# Environment variables
+.env
+.env.*
+.env.local
+!.env.example
+
+# Cloudflare credentials
+cloudflared/*.json
+cloudflared/cert.pem
+cloudflared/config.yml
+
+# Docker
+.dockerignore
+cloudflared/*.json
+
+# Cloudflare sensitive files
+cloudflared/*.json
+cloudflared/cert.pem
