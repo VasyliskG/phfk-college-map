@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   searchManager = new SearchManager();
   routeManager = new RouteManager();
 
+  // Expose to window for other modules that reference window.routeManager / window.mapRenderer
+  window.routeManager = routeManager;
+  window.mapRenderer = mapRenderer;
+  window.searchManager = searchManager;
+
   // Завантажити дані
   await mapRenderer.loadData();
 
@@ -97,24 +102,48 @@ function setupPopularButtons() {
       const roomAttr = btn.dataset.room;
       if (!roomAttr) return;
 
-      // Map friendly names to actual roomIds when needed
-      let targetRoomId = roomAttr;
-      if (roomAttr === 'library') targetRoomId = '342';
-      if (roomAttr === 'director') targetRoomId = '338a';
+      // Map popular keys to nodeIds (use node_1 as main entrance)
+      let targetNodeId = null;
+      if (roomAttr === '304') targetNodeId = 'node_304';
+      else if (roomAttr === '327') targetNodeId = 'node_327';
+      else if (roomAttr === 'library') targetNodeId = 'node_342';
+      else if (roomAttr === 'director') targetNodeId = 'node_338a';
+      else {
+        // fallback: if numeric, try node_<room>
+        if (/^\d+$/.test(roomAttr)) targetNodeId = `node_${roomAttr}`;
+      }
 
-      // Try to find the room's nodeId via API
-      try {
+      if (!targetNodeId) {
+        alert('Не вдалося знайти цільову аудиторію для побудови маршруту.');
+        return;
+      }
+
+      if (!window.routeManager) {
+        alert('Менеджер маршрутів недоступний');
+        return;
+      }
+
+      // Ensure selects are populated
+      if (!window.routeManager.routeTo || window.routeManager.routeTo.options.length === 0) {
         const roomsData = await API.getRooms();
-        const room = roomsData.rooms.find(r => String(r.roomId) === String(targetRoomId) || r.roomId === roomAttr);
-        if (room && window.routeManager && typeof window.routeManager.goToRoom === 'function') {
-          // Ensure route selects are populated (goToRoom will populate if needed)
-          window.routeManager.goToRoom(room.nodeId);
-        } else {
-          alert('Не вдалося знайти цільову аудиторію для побудови маршруту.');
-        }
+        await window.routeManager.populateRoomSelects(roomsData.rooms);
+      }
+
+      // Set 'from' to main entrance node_1 if present, otherwise leave as-is or pick first option
+      const fromOptions = Array.from(window.routeManager.routeFrom.options).map(o => o.value);
+      if (fromOptions.includes('node_1')) {
+        window.routeManager.routeFrom.value = 'node_1';
+      } else if (!window.routeManager.routeFrom.value && fromOptions.length > 0) {
+        window.routeManager.routeFrom.value = fromOptions[0];
+      }
+
+      // Set destination and call buildRoute() to perform the same API request as the build button
+      window.routeManager.routeTo.value = targetNodeId;
+      try {
+        window.routeManager.buildRoute();
       } catch (err) {
-        console.error('Error fetching rooms for popular button', err);
-        alert('Помилка при пошуку аудиторії');
+        console.error('Error building route from popular button', err);
+        alert('Помилка при побудові маршруту');
       }
     });
   });

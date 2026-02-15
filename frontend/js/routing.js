@@ -50,11 +50,10 @@ class RouteManager {
     // Встановити куди
     this.routeTo.value = nodeId;
 
-    // Якщо звідки не вибрано — поставимо вхід
+    // Якщо звідки не вибрано — поставимо головний вхід (node_1)
     if (!this.routeFrom.value) {
-      // Перевіряємо чи є опція 'entrance'
-      const hasEntrance = Array.from(this.routeFrom.options).some(o => o.value === 'entrance');
-      if (hasEntrance) this.routeFrom.value = 'entrance';
+      const hasMainEntrance = Array.from(this.routeFrom.options).some(o => o.value === 'node_1');
+      if (hasMainEntrance) this.routeFrom.value = 'node_1';
     }
 
     // Запустити будівництво маршруту
