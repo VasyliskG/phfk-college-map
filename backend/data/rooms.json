@@ -120,6 +120,302 @@
       "floor": 1,
       "nodeId": "node_wc_12",
       "type": "wc"
+    },
+    {
+      "roomId": "stairs_21",
+      "label": "Сходи 1 (1-2 поверх)",
+      "aliases": ["сходи"],
+      "floor": 2,
+      "nodeId": "node_stairs_21",
+      "type": "stairs"
+    },
+    {
+      "roomId": "stairs_22",
+      "label": "Сходи 2 (1-2 поверх)",
+      "aliases": ["сходи"],
+      "floor": 2,
+      "nodeId": "node_stairs_22",
+      "type": "stairs"
+    },
+    {
+      "roomId": "312",
+      "label": "Аудиторія 312",
+      "aliases": ["312", "ауд 312"],
+      "floor": 2,
+      "nodeId": "node_312",
+      "type": "classroom"
+    },
+    {
+      "roomId": "314",
+      "label": "Аудиторія 314",
+      "aliases": ["314", "ауд 314"],
+      "floor": 2,
+      "nodeId": "node_314",
+      "type": "classroom"
+    },
+    {
+      "roomId": "316",
+      "label": "Аудиторія 316",
+      "aliases": ["316", "ауд 316"],
+      "floor": 2,
+      "nodeId": "node_316",
+      "type": "classroom"
+    },
+    {
+      "roomId": "318",
+      "label": "Аудиторія 318",
+      "aliases": ["318", "ауд 318"],
+      "floor": 2,
+      "nodeId": "node_318",
+      "type": "classroom"
+    },
+    {
+      "roomId": "319",
+      "label": "Аудиторія 319",
+      "aliases": ["319", "ауд 319"],
+      "floor": 2,
+      "nodeId": "node_319",
+      "type": "classroom"
+    },
+    {
+      "roomId": "320",
+      "label": "Аудиторія 320",
+      "aliases": ["320", "ауд 320"],
+      "floor": 2,
+      "nodeId": "node_320",
+      "type": "classroom"
+    },
+    {
+      "roomId": "321",
+      "label": "Аудиторія 321",
+      "aliases": ["321", "ауд 321"],
+      "floor": 2,
+      "nodeId": "node_321",
+      "type": "classroom"
+    },
+    {
+      "roomId": "322",
+      "label": "Аудиторія 322",
+      "aliases": ["322", "ауд 322"],
+      "floor": 2,
+      "nodeId": "node_322",
+      "type": "classroom"
+    },
+    {
+      "roomId": "323",
+      "label": "Аудиторія 323",
+      "aliases": ["323", "ауд 323"],
+      "floor": 2,
+      "nodeId": "node_323",
+      "type": "classroom"
+    },
+    {
+      "roomId": "324",
+      "label": "Аудиторія 324",
+      "aliases": ["324", "ауд 324"],
+      "floor": 2,
+      "nodeId": "node_324",
+      "type": "classroom"
+    },
+    {
+      "roomId": "325",
+      "label": "Аудиторія 325",
+      "aliases": ["325", "ауд 325"],
+      "floor": 2,
+      "nodeId": "node_325",
+      "type": "classroom"
+    },
+    {
+      "roomId": "327",
+      "label": "Аудиторія 327",
+      "aliases": ["327", "ауд 327"],
+      "floor": 2,
+      "nodeId": "node_327",
+      "type": "classroom"
+    },
+    {
+      "roomId": "329",
+      "label": "Аудиторія 329",
+      "aliases": ["329", "ауд 329"],
+      "floor": 2,
+      "nodeId": "node_329",
+      "type": "classroom"
+    },
+    {
+      "roomId": "331",
+      "label": "Аудиторія 331",
+      "aliases": ["331", "ауд 331"],
+      "floor": 2,
+      "nodeId": "node_331",
+      "type": "classroom"
+    },
+    {
+      "roomId": "stairs_31",
+      "label": "Сходи 1 (2-3 поверх)",
+      "aliases": ["сходи"],
+      "floor": 3,
+      "nodeId": "node_stairs_31",
+      "type": "stairs"
+    },
+    {
+      "roomId": "stairs_32",
+      "label": "Сходи 2 (2-3 поверх)",
+      "aliases": ["сходи"],
+      "floor": 3,
+      "nodeId": "node_stairs_32",
+      "type": "stairs"
+    },
+    {
+      "roomId": "326",
+      "label": "Аудиторія 326",
+      "aliases": ["326", "ауд 326"],
+      "floor": 3,
+      "nodeId": "node_326",
+      "type": "classroom"
+    },
+    {
+      "roomId": "328",
+      "label": "Аудиторія 328",
+      "aliases": ["328", "ауд 328"],
+      "floor": 3,
+      "nodeId": "node_328",
+      "type": "classroom"
+    },
+    {
+      "roomId": "330",
+      "label": "Аудиторія 330",
+      "aliases": ["330", "ауд 330"],
+      "floor": 3,
+      "nodeId": "node_330",
+      "type": "classroom"
+    },
+    {
+      "roomId": "332",
+      "label": "Аудиторія 332",
+      "aliases": ["332", "ауд 332"],
+      "floor": 3,
+      "nodeId": "node_332",
+      "type": "classroom"
+    },
+    {
+      "roomId": "333",
+      "label": "Аудиторія 333",
+      "aliases": ["333", "ауд 333"],
+      "floor": 3,
+      "nodeId": "node_333",
+      "type": "classroom"
+    },
+    {
+      "roomId": "334",
+      "label": "Аудиторія 334",
+      "aliases": ["334", "ауд 334"],
+      "floor": 3,
+      "nodeId": "node_334",
+      "type": "classroom"
+    },
+    {
+      "roomId": "335a",
+      "label": "Аудиторія 335 (ліва)",
+      "aliases": ["335", "ауд 335", "335 ліва"],
+      "floor": 3,
+      "nodeId": "node_335a",
+      "type": "classroom"
+    },
+    {
+      "roomId": "335b",
+      "label": "Аудиторія 335 (права)",
+      "aliases": ["335", "ауд 335", "335 права"],
+      "floor": 3,
+      "nodeId": "node_335b",
+      "type": "classroom"
+    },
+    {
+      "roomId": "336",
+      "label": "Аудиторія 336",
+      "aliases": ["336", "ауд 336"],
+      "floor": 3,
+      "nodeId": "node_336",
+      "type": "classroom"
+    },
+    {
+      "roomId": "337",
+      "label": "Аудиторія 337",
+      "aliases": ["337", "ауд 337"],
+      "floor": 3,
+      "nodeId": "node_337",
+      "type": "classroom"
+    },
+    {
+      "roomId": "338a",
+      "label": "Аудиторія 338",
+      "aliases": ["338", "ауд 338"],
+      "floor": 3,
+      "nodeId": "node_338a",
+      "type": "classroom"
+    },
+    {
+      "roomId": "338b",
+      "label": "Аудиторія 338 (2)",
+      "aliases": ["338", "ауд 338"],
+      "floor": 3,
+      "nodeId": "node_338b",
+      "type": "classroom"
+    },
+    {
+      "roomId": "339",
+      "label": "Аудиторія 339",
+      "aliases": ["339", "ауд 339"],
+      "floor": 3,
+      "nodeId": "node_339",
+      "type": "classroom"
+    },
+    {
+      "roomId": "340",
+      "label": "Аудиторія 340",
+      "aliases": ["340", "ауд 340"],
+      "floor": 3,
+      "nodeId": "node_340",
+      "type": "classroom"
+    },
+    {
+      "roomId": "341",
+      "label": "Аудиторія 341",
+      "aliases": ["341", "ауд 341"],
+      "floor": 3,
+      "nodeId": "node_341",
+      "type": "classroom"
+    },
+    {
+      "roomId": "342",
+      "label": "Аудиторія 342",
+      "aliases": ["342", "ауд 342"],
+      "floor": 3,
+      "nodeId": "node_342",
+      "type": "classroom"
+    },
+    {
+      "roomId": "343",
+      "label": "Аудиторія 343",
+      "aliases": ["343", "ауд 343"],
+      "floor": 3,
+      "nodeId": "node_343",
+      "type": "classroom"
+    },
+    {
+      "roomId": "347",
+      "label": "Аудиторія 347",
+      "aliases": ["347", "ауд 347"],
+      "floor": 3,
+      "nodeId": "node_347",
+      "type": "classroom"
+    },
+    {
+      "roomId": "349",
+      "label": "Аудиторія 349",
+      "aliases": ["349", "ауд 349"],
+      "floor": 3,
+      "nodeId": "node_349",
+      "type": "classroom"
     }
   ]
 }
