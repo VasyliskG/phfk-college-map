@@ -28,19 +28,37 @@ class RouteManager {
         `<option value="${room.nodeId}">${room.label} (${room.floor} пов.)</option>`
     ).join('');
 
-    // Додаємо спеціальні точки (вхід, сходи)
-    const specialOptions = `
-      <optgroup label="Спеціальні точки">
-        <option value="entrance">🚪 Головний вхід (1 пов.)</option>
-        <option value="stairs_1">🪜 Сходи 1 (1 пов.)</option>
-        <option value="stairs_2">🪜 Сходи 2 (1 пов.)</option>
-      </optgroup>
-    `;
-
     const roomOptions = `<optgroup label="Кімнати">${options}</optgroup>`;
 
-    this.routeFrom.innerHTML = '<option value="">-- Звідки --</option>' + specialOptions + roomOptions;
-    this.routeTo.innerHTML = '<option value="">-- Куди --</option>' + specialOptions + roomOptions;
+    this.routeFrom.innerHTML = '<option value="">-- Звідки --</option>' + roomOptions;
+    this.routeTo.innerHTML = '<option value="">-- Куди --</option>' + roomOptions;
+  }
+
+  /**
+   * Shortcut: встановити кінцеву точку маршруту на вказаний nodeId
+   * Якщо початкова точка не встановлена — за замовчуванням вибирається 'entrance'
+   */
+  async goToRoom(nodeId) {
+    if (!nodeId) return;
+
+    // Якщо опції ще не заповнені, спробуємо отримати rooms від API
+    if (!this.routeTo || this.routeTo.options.length === 0) {
+      const roomsData = await API.getRooms();
+      await this.populateRoomSelects(roomsData.rooms);
+    }
+
+    // Встановити куди
+    this.routeTo.value = nodeId;
+
+    // Якщо звідки не вибрано — поставимо вхід
+    if (!this.routeFrom.value) {
+      // Перевіряємо чи є опція 'entrance'
+      const hasEntrance = Array.from(this.routeFrom.options).some(o => o.value === 'entrance');
+      if (hasEntrance) this.routeFrom.value = 'entrance';
+    }
+
+    // Запустити будівництво маршруту
+    this.buildRoute();
   }
 
   async buildRoute() {
@@ -102,8 +120,6 @@ class RouteManager {
       <div style="background: #E3F2FD; padding: 12px; border-radius: 6px; border-left: 4px solid #2196F3;">
         <strong style="color: #1976D2;">📍 Маршрут побудовано</strong><br>
         <div style="margin-top: 8px; font-size: 13px; color: #555;">
-          📏 Відстань: <strong>${distance} м</strong><br>
-          🚶 Точок маршруту: <strong>${path.length}</strong><br>
           ${doorCount > 0 ? `🚪 Дверей: <strong>${doorCount}</strong><br>` : ''}
           ${stairsCount > 0 ? `🪜 Сходів: <strong>${stairsCount}</strong><br>` : ''}
         </div>

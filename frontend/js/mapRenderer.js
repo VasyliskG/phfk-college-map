@@ -13,6 +13,9 @@ class MapRenderer {
     this.graphData = null;
     this.roomsData = null;
     this.floorImageLayers = {};
+  // control whether to show node markers (doors, rooms, waypoints, etc.)
+  // default: hidden per user request
+  this.showNodes = false;
 
     // Розміри зображення
     this.imageWidth = 2048;
@@ -98,6 +101,18 @@ class MapRenderer {
 
     console.log('✅ Leaflet map initialized');
     console.log(`📐 Image: ${this.imageWidth}x${this.imageHeight}, Offset: ${this.imageOffsetY}px`);
+
+    // Save default view so we can reset later
+    this.defaultView = {
+      center: this.map.getCenter(),
+      zoom: this.map.getZoom()
+    };
+
+    // Reset view button (in DOM overlay)
+    const resetBtn = document.getElementById('reset-view-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => this.resetView());
+    }
   }
 
   async loadData() {
@@ -185,13 +200,15 @@ class MapRenderer {
     });
 
     // Відображаємо вузли в порядку: waypoints → doors → rooms → stairs → entrance
-    Object.keys(nodesByType).forEach(type => {
-      nodesByType[type].forEach(node => {
-        const invertedY = this.imageHeight - node.y - this.imageOffsetY;
-        const marker = this.createMarker(node, invertedY);
-        this.markers[node.id] = marker;
+    if (this.showNodes) {
+      Object.keys(nodesByType).forEach(type => {
+        nodesByType[type].forEach(node => {
+          const invertedY = this.imageHeight - node.y - this.imageOffsetY;
+          const marker = this.createMarker(node, invertedY);
+          this.markers[node.id] = marker;
+        });
       });
-    });
+    }
 
     console.log('📍 Rendered:',
         `${nodesByType.room.length} rooms, `,
@@ -482,6 +499,22 @@ class MapRenderer {
     const routeManager = window.routeManager;
     if (routeManager && routeManager.currentRoute) {
       this.drawRoute(routeManager.currentRoute);
+    }
+  }
+
+  /**
+   * Повернути вид карти до дефолтного центру/зуму
+   */
+  resetView() {
+    if (this.defaultView) {
+      this.map.setView(this.defaultView.center, this.defaultView.zoom);
+    } else {
+      // Fallback: fit bounds to current image
+      const bounds = [
+        [-this.imageOffsetY, 0],
+        [this.imageHeight - this.imageOffsetY, this.imageWidth]
+      ];
+      this.map.fitBounds(bounds, { padding: [20, 20] });
     }
   }
 }

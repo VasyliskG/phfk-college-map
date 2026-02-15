@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupFloorSwitcher();
   setupSearchHandler();
   setupRouteHandler();
+  setupPopularButtons();
+  // route panel toggle removed per layout changes
 
   console.log('✅ Application ready');
 });
@@ -49,6 +51,71 @@ function setupFloorSwitcher() {
       mapRenderer.switchFloor(floor);
 
       console.log('🏢 Switched to floor', floor);
+    });
+  });
+}
+
+/**
+ * Додає кнопку для показу/приховування панелі побудови маршруту
+ */
+function setupRoutePanelToggle() {
+  const routePanel = document.querySelector('.route-panel');
+  if (!routePanel) return;
+
+  // Create toggle button
+  const toggleBtn = document.createElement('button');
+  toggleBtn.id = 'toggle-route-panel-btn';
+  toggleBtn.className = 'toggle-route-panel';
+  toggleBtn.type = 'button';
+
+  const hidden = localStorage.getItem('routePanelHidden') === 'true';
+  toggleBtn.textContent = hidden ? 'Показати меню' : 'Приховати меню';
+
+  // Insert button at the top of the route-panel
+  routePanel.insertBefore(toggleBtn, routePanel.firstChild);
+
+  if (hidden) {
+    routePanel.classList.add('collapsed');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isHidden = routePanel.classList.toggle('collapsed');
+    localStorage.setItem('routePanelHidden', isHidden ? 'true' : 'false');
+    toggleBtn.textContent = isHidden ? 'Показати меню' : 'Приховати меню';
+  });
+}
+
+/**
+ * Налаштувати кнопки "популярні" — натискання одразу будує маршрут від входу
+ */
+function setupPopularButtons() {
+  const popularBtns = document.querySelectorAll('.popular-btn');
+  if (!popularBtns || popularBtns.length === 0) return;
+
+  popularBtns.forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const roomAttr = btn.dataset.room;
+      if (!roomAttr) return;
+
+      // Map friendly names to actual roomIds when needed
+      let targetRoomId = roomAttr;
+      if (roomAttr === 'library') targetRoomId = '342';
+      if (roomAttr === 'director') targetRoomId = '338a';
+
+      // Try to find the room's nodeId via API
+      try {
+        const roomsData = await API.getRooms();
+        const room = roomsData.rooms.find(r => String(r.roomId) === String(targetRoomId) || r.roomId === roomAttr);
+        if (room && window.routeManager && typeof window.routeManager.goToRoom === 'function') {
+          // Ensure route selects are populated (goToRoom will populate if needed)
+          window.routeManager.goToRoom(room.nodeId);
+        } else {
+          alert('Не вдалося знайти цільову аудиторію для побудови маршруту.');
+        }
+      } catch (err) {
+        console.error('Error fetching rooms for popular button', err);
+        alert('Помилка при пошуку аудиторії');
+      }
     });
   });
 }

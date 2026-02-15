@@ -314,19 +314,19 @@
       "type": "classroom"
     },
     {
-      "roomId": "335a",
-      "label": "Аудиторія 335 (ліва)",
-      "aliases": ["335", "ауд 335", "335 ліва"],
+      "roomId": "335",
+      "label": "Аудиторія 335",
+      "aliases": ["335", "ауд 335"],
       "floor": 3,
-      "nodeId": "node_335a",
+      "nodeId": "node_335",
       "type": "classroom"
     },
     {
-      "roomId": "335b",
-      "label": "Аудиторія 335 (права)",
-      "aliases": ["335", "ауд 335", "335 права"],
+      "roomId": "345",
+      "label": "Аудиторія 345",
+      "aliases": ["345", "ауд 345"],
       "floor": 3,
-      "nodeId": "node_335b",
+      "nodeId": "node_345",
       "type": "classroom"
     },
     {

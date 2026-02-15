@@ -48,9 +48,12 @@ class SearchManager {
 
     this.searchResults.innerHTML = results.map(room => `
       <div class="search-result-item" data-room-id="${room.roomId}" data-node-id="${room.nodeId}">
-        <div class="result-label">${room.label}</div>
-        <div class="result-meta">
-          ${room.roomId} • ${room.floor} поверх • ${room.type}
+        <div class="result-left">
+          <div class="result-label">${room.label}</div>
+          <div class="result-meta">${room.roomId} • ${room.floor} поверх • ${room.type}</div>
+        </div>
+        <div class="result-actions">
+          <button class="route-to-btn" data-node-id="${room.nodeId}" title="Прокласти маршрут сюди">Прокласти</button>
         </div>
       </div>
     `).join('');
@@ -63,6 +66,25 @@ class SearchManager {
         this.selectRoom(roomId, nodeId);
         this.hideResults();
         this.searchInput.value = item.querySelector('.result-label').textContent;
+      });
+    });
+
+    // Route buttons
+    this.searchResults.querySelectorAll('.route-to-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation(); // prevent the parent click
+        const nodeId = btn.dataset.nodeId;
+        // If a RouteManager exists, use its helper to go to room
+        if (window.routeManager && typeof window.routeManager.goToRoom === 'function') {
+          window.routeManager.goToRoom(nodeId);
+          this.hideResults();
+          this.searchInput.value = btn.closest('.search-result-item').querySelector('.result-label').textContent;
+        } else {
+          // Fallback: select room
+          const roomItem = btn.closest('.search-result-item');
+          const roomId = roomItem.dataset.roomId;
+          this.selectRoom(roomId, nodeId);
+        }
       });
     });
 

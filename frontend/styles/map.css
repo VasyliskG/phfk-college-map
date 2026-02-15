@@ -1,10 +1,14 @@
     .map-page {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* center control panel under the map */
+      gap: 28px;
       padding: 40px 20px;
       min-height: 85vh;
     }
+
+    .map-page-title { width:100%; display:flex; justify-content:center; }
+    .map-page-title h1 { margin:0 0 6px 0; font-size:1.6rem; color:#0f172a }
 
     /* Ліва частина — КАРТА */
     .map-container {
@@ -13,7 +17,12 @@
       overflow: hidden;
       position: relative;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      min-height: 620px;
+      /* Keep map proportional to the source image (2048×512) */
+      aspect-ratio: 2048 / 512; /* preferred modern browsers */
+      /* Fallback for older browsers: set padding-top to imageHeight/imageWidth */
+      height: auto;
+      min-height: 320px;
+      max-height: 80vh;
     }
 
     .map-placeholder {
@@ -36,6 +45,48 @@
       background: #f8fafc; /* subtle background to blend with page */
     }
 
+    /* Map overlays: reset button */
+    .map-overlay {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 700; /* above leaflet controls */
+      pointer-events: none; /* allow clicks to pass unless specific element */
+    }
+
+    .map-overlay > * { pointer-events: auto; }
+
+    .reset-view {
+      background: #111827;
+      color: #fff;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.18);
+    }
+
+    /* Marker styles: add subtle pulse for special markers */
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(76,175,80,0.6); }
+      70% { box-shadow: 0 0 0 12px rgba(76,175,80,0); }
+      100% { box-shadow: 0 0 0 0 rgba(76,175,80,0); }
+    }
+
+    .node-marker { transform: translate(-50%, -50%); }
+
+    .route-endpoint div { width: 28px; height: 28px; border-radius: 50%; display:flex; align-items:center; justify-content:center }
+    .route-arrow { pointer-events: none }
+
+
     .map-svg {
       width: 100%;
       height: 100%;
@@ -43,11 +94,26 @@
     }
 
     /* Права панель */
-    .search-panel {
+    /* controls-row: three columns under the map */
+    .controls-row {
+      width: 100%;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 6px;
+    }
+
+    .controls-search, .controls-route, .controls-popular {
+      background: transparent;
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 12px;
     }
+
+    .controls-search { flex: 1 1 340px; max-width: 380px; }
+    .controls-route { flex: 0 1 420px; max-width: 520px; display:flex; align-items:flex-start }
+    .controls-popular { flex: 0 0 260px; max-width: 280px }
 
     .search-box {
       background: white;
@@ -118,5 +184,107 @@
     .popular-btn:hover {
       background: #2563eb;
       transform: translateY(-2px);
+    }
+
+    /* Search result route button */
+    .search-results { position: relative; max-height: 300px; overflow: auto; }
+    .search-result-item { display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid #eef2f7 }
+    .search-result-item .result-left { display:flex; flex-direction:column; }
+    .route-to-btn {
+      background:#059669; color:white; border:none; padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:600;
+    }
+    .route-to-btn:hover { background:#047857 }
+
+    /* Floor selector and route panel improvements */
+    .floor-selector {
+      background: #fff;
+      padding: 12px 14px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(2,6,23,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .floor-selector label { font-weight:700; color:#0f172a; }
+
+    .floor-buttons { display:flex; gap:8px; }
+
+    .floor-btn {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      border: 1px solid #e6edf3;
+      cursor: pointer;
+      font-weight:600;
+      color:#0f172a;
+      transition: all 0.14s ease;
+    }
+
+    .floor-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(2,6,23,0.06); }
+
+    .floor-btn.active {
+      background: linear-gradient(90deg,#3b82f6,#2563eb);
+      color: white;
+      box-shadow: 0 8px 30px rgba(37,99,235,0.14);
+      transform: none;
+    }
+
+    .route-panel {
+      background: #fff;
+      padding: 14px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(2,6,23,0.06);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    /* route panel should always be visible in the new layout */
+    .route-panel { width: 100%; }
+
+    .route-panel h3 { margin:0; font-size:1.05rem; color:#0f172a }
+
+    .route-inputs { display:flex; gap:8px; align-items:center }
+
+    .route-inputs { display:flex; gap:6px; align-items:center }
+
+    .route-inputs select {
+      padding:6px 8px;
+      border-radius:6px;
+      border:1px solid #e6edf3;
+      background:#fbfeff;
+      font-weight:600;
+      color:#0f172a;
+      font-size:0.95rem;
+      min-width:120px;
+      max-width:220px;
+      height:36px;
+    }
+
+    .route-inputs span {
+      font-size:1.05rem;
+      color:#334155;
+      display:inline-flex;
+      align-items:center;
+      padding:0 6px;
+    }
+
+    #build-route-btn {
+      background: linear-gradient(90deg,#059669,#047857);
+      color: #fff; border:none; padding:10px 12px; border-radius:10px; cursor:pointer; font-weight:700;
+    }
+
+    #build-route-btn:disabled { opacity:0.6; cursor:not-allowed }
+
+    #clear-route-btn { background:#f8fafc; border:1px solid #e6edf3; padding:8px 10px; border-radius:8px; cursor:pointer }
+
+    #route-info { margin-top:6px }
+
+    /* Responsive tweaks */
+    @media (max-width: 900px) {
+      .map-page { grid-template-columns: 1fr; }
+      .map-overlay { right: 8px; top: 8px }
+      .floor-buttons { gap:6px }
     }
  
